@@ -75,16 +75,14 @@ app.get('/weather', (req, res) => {
 		if(err){
 			return res.send({err})
 		}
+
 		forecast(text, (errorForecast, dataForcast) => {
 			if(errorForecast){
 				return res.send({errorForecast})
 			}
 			res.send({
-				address: address,
-				location: text,
-				forecast: dataForcast,
-				'place name': place_name,
-				coordinates: center,
+				'place_name': place_name,
+				forecast: dataForcast	
 			})
 		})
 	})
@@ -175,3 +173,16 @@ app.listen(port, () => {
 //     })
 // })
 
+
+
+		// {wind_degree, wind_speed, weather_descriptions, weather_icons, temperature, observation_time, feelslike. cloudcover, visibility, is_day}
+		// address: address,
+		// location: text,
+		// // forecast: dataForcast,
+		// 'place name': place_name,
+		// coordinates: center,
+		// temperature: temperature,
+		// 'wind degree': wind_degree,
+		// 'wind speed': wind_speed,
+		// 'weather descriptions': weather_descriptions,
+		// 'weather icons': weather_icons,
