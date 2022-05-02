@@ -1,8 +1,9 @@
-*{
+* {
     margin: 0;
     padding: 0;
     box-sizing: border-box;
 }
+
 body {
     color: #333333;
     font-family: Arial, Helvetica, sans-serif;
@@ -61,30 +62,53 @@ button {
 p {
     text-transform: capitalize;
 }
-.place-name{
+
+.place-name {
     padding: .5em 0;
 }
+
 #show-detail {
-    margin: 1em 0 ;
+    margin: 1em 0;
     background: #ebebeb;
     border-radius: 5px;
     padding: 15px;
     display: flex;
     align-items: center;
+    flex-direction: row;
     /* width: 100%; */
 }
+
+@media only screen and (max-width: 425px) {
+    #show-detail {
+        flex-direction: column;
+    }
+}
+
 #msg-1 {
     margin: .5em 0;
 }
+
 .one {
     width: 50%;
 }
+
 .two {
     width: 50%;
 }
+
+@media only screen and (max-width: 425px) {
+    .one {
+        width: 100%;
+    }
+    .two {
+        width: 100%;
+    }
+}
+
 .current {
     padding-bottom: 10px;
 }
+
 .cnt-img {
     display: flex;
     align-items: center;
