@@ -78,7 +78,7 @@ app.get('/weather', (req, res) => {
 
 		forecast(text, (errorForecast, dataForcast) => {
 			if(errorForecast){
-				return res.send({helll: errorForecast})
+				return res.send({error: errorForecast})
 			}
 			res.send({
 				'place_name': place_name,
