@@ -43,7 +43,7 @@
 
 
 function geoFindMe(input) {
-    function findMe() {
+    async function findMe() {
         async function success(position) {
             let latitude = position.coords.latitude;
             let longitude = position.coords.longitude;
