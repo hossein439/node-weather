@@ -43,12 +43,10 @@
 
 
 function geoFindMe(input) {
-    async function findMe() {
-        function success(position) {
+    function findMe() {
+        async function success(position) {
             let latitude = position.coords.latitude;
             let longitude = position.coords.longitude;
-            console.log(latitude);
-            console.log(longitude);
             const apiKey = '7d187b595c89446480efe073a60a236f';
             const currentLocation = await fetch(`https://api.geoapify.com/v1/geocode/reverse?lat=${latitude}&lon=${longitude}&apiKey=${apiKey}`)
             if (currentLocation.status == 200) {
