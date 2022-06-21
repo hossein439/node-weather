@@ -56,9 +56,9 @@ function geoFindMe(input) {
                 function success(position) {
                     latitude = position.coords.latitude;
                     longitude = position.coords.longitude;
+                    console.log(latitude);
+                    console.log(longitude);
                 }
-                console.log(latitude);
-                console.log(longitude);
                 function error() {
                     alert('Unable to retrieve your location');
                 }
