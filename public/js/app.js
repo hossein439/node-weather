@@ -43,60 +43,32 @@
 
 
 function geoFindMe(input) {
-    async function getIpCode() {
-        const response = await fetch("https://jsonip.com")
-        if (response.status === 200 && response.statusText === 'OK') {
-            const data = await response.json();
-            const ipCode = data.ip;
-            // const ipLocate  = await fetch(`http://ip-api.com/json/${ipCode}`);
-            // const ipLocate = await fetch(`https://www.iplocate.io/api/lookup/${ipCode}`);
-            function findMe() {
-                let latitude;
-                let longitude
-                function success(position) {
-                    latitude = position.coords.latitude;
-                    longitude = position.coords.longitude;
-                    console.log(latitude);
-                    console.log(longitude);
-                }
-                function error() {
-                    alert('Unable to retrieve your location');
-                }
-            
-                if (!navigator.geolocation) {
-                    alert('Geolocation is not supported by your browser');
-                } else {
-                    navigator.geolocation.getCurrentPosition(success, error);
-                }
-                return {latitude, longitude}
+    async function findMe() {
+        function success(position) {
+            let latitude = position.coords.latitude;
+            let longitude = position.coords.longitude;
+            console.log(latitude);
+            console.log(longitude);
+            const apiKey = '7d187b595c89446480efe073a60a236f';
+            const currentLocation = await fetch(`https://api.geoapify.com/v1/geocode/reverse?lat=${latitude}&lon=${longitude}&apiKey=${apiKey}`)
+            if (currentLocation.status == 200) {
+                const currentLocationData = await currentLocation.json();
+                const input = document.getElementById('location');
+                console.log(currentLocationData)
+                input.value = currentLocationData.features[0].properties.formatted;
             }
+        }
 
-            let hello = findMe()
-            console.log(hello)
-            // if (ipLocate.status === 200) {
-                // const locationData = await ipLocate.json();
-                // const { lat, lon } = locationData;
-                // const { latitude, longitude } = locationData;
-                // console.log(locationData);
-                const apiKey = '7d187b595c89446480efe073a60a236f';
-                const currentLocation = await fetch(`https://api.geoapify.com/v1/geocode/reverse?lat=${hello.latitude}&lon=${hello.longitude}&apiKey=${apiKey}`)
-                if (currentLocation.status == 200) {
-                    const currentLocationData = await currentLocation.json();
-                    const input = document.getElementById('location');
-                    console.log(currentLocationData)
-                    input.value = currentLocationData.features[0].properties.formatted;
-                }
-            // }
+        function error() {
+            alert('Unable to retrieve your location');
+        }
+
+        if (!navigator.geolocation) {
+            alert('Geolocation is not supported by your browser');
         } else {
-            throw new Error('We could not find your IP');
+            navigator.geolocation.getCurrentPosition(success, error);
         }
     }
-    getIpCode()
+    findMe()
 }
-
-
 geoFindMe();
-
-
-
-
