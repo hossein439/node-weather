@@ -59,7 +59,8 @@ function geoFindMe(input) {
             }
         }
 
-        function error() {
+        function error(e) {
+            console.log(e);
             alert('Unable to retrieve your location');
         }
 
