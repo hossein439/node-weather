@@ -43,8 +43,10 @@
 
 
 function geoFindMe(input) {
-    async function findMe() {
+    function findMe() {
         async function success(position) {
+            console.log(navigator)
+            console.log(navigator.geolocation);
             let latitude = position.coords.latitude;
             let longitude = position.coords.longitude;
             const apiKey = '7d187b595c89446480efe073a60a236f';
@@ -53,7 +55,7 @@ function geoFindMe(input) {
                 const currentLocationData = await currentLocation.json();
                 const input = document.getElementById('location');
                 console.log(currentLocationData)
-                input.value = currentLocationData.features[0].properties.formatted;
+                input.value = currentLocationData.features[0].properties.address_line2;
             }
         }
 
