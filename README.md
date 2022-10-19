@@ -1,2 +1,2 @@
-# node3-weahter-website
+# node3-weahter
 # npm install
